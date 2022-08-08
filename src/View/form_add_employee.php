@@ -36,7 +36,7 @@
         </ul>
     </nav>
     <main class="flex items-center justify-center h-screen">
-        <form action="../Controller/Employee.php" method="POST">
+        <form action="../Controller/Employee.php?operation=insert" method="POST">
             <fieldset class="flex flex-col p-4 m-5 border border-purple-400 w-400">
                 <section>
                     <article>
