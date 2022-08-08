@@ -51,7 +51,7 @@
             ?>
                 <tr>
                     <td>
-                        <?= $employee['employee_code'] ?>
+                        <?= $employee['id'] ?>
                     </td>
                     <td>
                         <?= $employee['employee_name'] ?>
