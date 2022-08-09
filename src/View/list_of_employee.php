@@ -31,46 +31,53 @@
                 <a href="../Controller/Client.php?operation=list">Listar Clientes/</a>
             </li>
             <li class="inline">
-                <a href="../Controller/Employee.php?operation=list">Listar Funcionários</a>
+                <a href="../Controller/Employee.php?operation=listEmployee">Listar Funcionários</a>
             </li>
         </ul>
     </nav>
-    <h1 class="my-4 text-3xl font-bold text-center text-blue-800">Lista de funcionários cadastrados</h1>
+    <h1 class="my-5 text-3xl font-bold text-center text-blue-800">Lista de funcionários cadastrados</h1>
     <table class="m-auto">
-        <thead class="text-white bg-blue-400">
+        <head class="text-white bg-blue-400">
             <th>#</th>
             <th>Nome</th>
             <th>CPF</th>
+            <th>Data de nascimento</th>
             <th>E-mail</th>
             <th>Matricula</th>
-        </thead>
-        <tbody>
+        </head>
+        <body>
             <?php
             session_start();
             foreach ($_SESSION['list_of_employee'] as $employee) :
             ?>
                 <tr>
                     <td>
-                        <?= $employee['id'] ?>
+                        <?= $employee['idEmployee'] ?>
                     </td>
                     <td>
-                        <?= $employee['employee_name'] ?>
+                        <?= $employee['name'] ?>
                     </td>
                     <td>
-                        R$ <?= str_replace(".", ",", $employee['employee_price']) ?>
+                        <?= $employee['cpf'] ?>
                     </td>
                     <td>
-                        <?= $employee['employee_quantity'] ?>
+                        <?= $employee['birthDate'] ?>
                     </td>
                     <td>
-                        <a href="../Controller/Employee.php?operation=find&code=<?= $employee["employee_code"] ?>">Editar</a>
-                        <a href="../Controller/Employee.php?operation=remove&code=<?= $employee["employee_code"] ?>">Remover</a>
+                        <?= $employee['email'] ?>
+                    </td>
+                    <td>
+                        <?= $employee['registration_employee'] ?>
+                    </td>
+                    <td>
+                        <a href="../Controller/Employee.php?operation=find&code=<?= $employee["idEmployee"] ?>">Editar</a>
+                        <a href="../Controller/Employee.php?operation=removeEmployee&code=<?= $employee["idEmployee"] ?>">Remover</a>
                     </td>
                 </tr>
             <?php
             endforeach;
             ?>
-        </tbody>
+        </body>
     </table>
 </body>
 

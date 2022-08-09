@@ -10,7 +10,7 @@ class UserDAO
     public function findEmployee($login)
     {
         $connection = Connection::getConnection();
-        $stmt = $connection->query("SELECT * FROM employee WHERE registrationemployee = '$login';");
+        $stmt = $connection->query("SELECT * FROM employee WHERE registration_employee = '$login';");
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     public function findClient($login)

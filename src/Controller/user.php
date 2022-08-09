@@ -37,7 +37,15 @@ function login()
     
     $userEmployee = $dao->findEmployee($login);
     //localizador automatica de login senha de funcionário e cliente
-    if ($userClient) {
+    if($userEmployee){
+        if (password_verify($password, $userEmployee['password'])) {
+            session_start();
+            $_SESSION['auth'] = $login;
+            header('location:../View/dashboard.php');
+        } else {
+            Redirect::redirect(message: ['Nenhum Funcionário foi localizado com essas credenciais'], type: 'warning');
+        }
+    }else if ($userClient) {
 
         if (password_verify($password, $userClient['password'])) {
             session_start();
@@ -45,14 +53,6 @@ function login()
             header('location:../View/dashboard.php');
         } else {
             Redirect::redirect(message: ['Nenhum Cliente foi localizado com essas credenciais'], type: 'warning');
-        }
-    }else if($userEmployee){
-        if (password_verify($password, $userEmployee['password'])) {
-            session_start();
-            $_SESSION['auth'] = $login;
-            header('location:../View/dashboard.php');
-        } else {
-            Redirect::redirect(message: ['Nenhum Funcionário foi localizado com essas credenciais'], type: 'warning');
         }
     }else {
         Redirect::redirect(message: ['Nenhum usuário foi localizado com essas credenciais'], type: 'warning');

@@ -21,10 +21,10 @@ switch ($_GET['operation']){
     case 'insert':
         insertEmployee();
         break;
-    case 'list':
+    case 'listEmployee':
         listEmployee();
         break;
-    case 'remove':
+    case 'removeEmployee':
         removeEmployee();
         break;
     case 'find':
@@ -45,10 +45,10 @@ function insertEmployee()
     }
 
     $name = $_POST["name"];
-    $cpf = str_repeat(".","-", $_POST['cpf']);
+    $cpf =$_POST['cpf'];
     $birthDate = $_POST["birthDate"];
     $email = $_POST["email"];
-    $registration = $_POST["registration"];
+    $registration_employee = $_POST["registration"];
     $password = $_POST["password"];
     $employeePublicPlace = $_POST["publicPlace"];
     $employeeStreetName = $_POST['streetName'];
@@ -63,7 +63,7 @@ function insertEmployee()
     if(Validation::validateString($name)){
         array_unshift($error, "O nome do funcionário deve ter mais de 3 Caractéres");
     }
-    if(Validation::validatenumber($registration)){
+    if(Validation::validatenumber($registration_employee)){
         array_unshift($error, "O número da matrícula deve ser maior que zero!!!!");
     }
 
@@ -75,16 +75,16 @@ function insertEmployee()
             cpf: $cpf,
             birthDate: $birthDate,
             email: $email,
-            registration: $registration,
+            registration_employee: $registration_employee,
             password: $password,
             address: new Address(
-                publicPlace: $employeePublicPlace,
-                streetName: $employeeStreetName,
-                neighborhood: $employeeNeighborhood,
+                public_place: $employeePublicPlace,
+                street_name: $employeeStreetName,
+                number_of_street: $employeenumberOfStreet,
                 complement: $employeeComplement,
-                numberOfStreet: $employeenumberOfStreet,
-                zipCode: $employeeZipCode,
-                city: $employeeCity
+                neighborhood: $employeeNeighborhood,
+                city: $employeeCity,
+                zip_code: $employeeZipCode
             )
         );
         try {
@@ -96,7 +96,7 @@ function insertEmployee()
                 $dao = new EmployeeDAO();
                 $result = $dao->insert($employee);
                 if($result){
-                    Redirect::redirect(message: "O funcionário $name foi cadastrado com sucesso!!!");
+                    Redirect::redirect(message: "O funcionário $name foi cadastrado com sucesso!!!", type: 'success');
                 }else{
                     Redirect::redirect(message: "Lamento, não foi possível cadastrar o funcionário $employee", type: 'error');
                 }
@@ -135,17 +135,18 @@ function removeEmployee()
     $error = array();
 
     if(!Validation::validatenumber($code)){
-        array_unshift($error, 'Código do funcionário inválido!!!');
+        array_unshift($error, 'Código do funcionário inválido, aqui!!!');
     }
 
     if($error){
-        Redirect::redirect($error, type: 'warning');
+        Redirect::redirect($error, type: 'error');
     }else{
         try{
             $dao = new EmployeeDAO();
             $result = $dao->delete($code);
             if($result){
-                Redirect::redirect(message: "Funcionário foi removido com sucesso!!!");
+                Redirect::redirect(message: "Funcionário foi removido com sucesso!!!", type: 'error');
+                
             }else{
                 Redirect::redirect(message: ['Não foi possível remover o funcionário'], type: 'warning');
             }
@@ -182,12 +183,12 @@ function editEmployee()
         Redirect::redirect(message: 'Requisição inválida!!!', type: 'error');
     }
 
-    $code = $_POST['code'];
+    $code = $_POST['idEmployee'];
     $name = $_POST["name"];
-    $cpf = str_repeat(".","-", $_POST['cpf']);
+    $cpf = $_POST['cpf'];
     $birthDate = $_POST["birthDate"];
     $email = $_POST["email"];
-    $registration = $_POST["registration"];
+    $registration_employee = $_POST["registration"];
     $password = $_POST["password"];
     $employeePublicPlace = $_POST["publicPlace"];
     $employeeStreetName = $_POST['streetName'];
@@ -204,15 +205,15 @@ function editEmployee()
         cpf: $cpf,
         birthDate: $birthDate,
         email: $email,
-        registration: $registration,
+        registration_employee: $registration_employee,
         password: $password,
         address: new Address(
-            publicPlace: $employeePublicPlace,
-            streetName: $employeeStreetName,
+            public_place: $employeePublicPlace,
+            street_name: $employeeStreetName,
             neighborhood: $employeeNeighborhood,
             complement: $employeeComplement,
-            numberOfStreet: $employeenumberOfStreet,
-            zipCode: $employeeZipCode,
+            number_of_street: $employeenumberOfStreet,
+            zip_code: $employeeZipCode,
             city: $employeeCity
         ),
         id: $code

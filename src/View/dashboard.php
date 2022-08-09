@@ -32,7 +32,7 @@
                 <a href="../Controller/Client.php?operation=list">Listar Clientes/</a>
             </li>
             <li class="inline">
-                <a href="../Controller/Employee.php?operation=list">Listar Funcionários</a>
+                <a href="../Controller/Employee.php?operation=listEmployee">Listar Funcionários</a>
             </li>
     </ul>
   </nav>

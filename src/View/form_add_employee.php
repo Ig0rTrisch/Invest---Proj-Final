@@ -31,7 +31,7 @@
                 <a href="../Controller/Client.php?operation=list">Listar Clientes/</a>
             </li>
             <li class="inline">
-                <a href="../Controller/Employee.php?operation=list">Listar Funcionários</a>
+                <a href="../Controller/Employee.php?operation=listEmployee">Listar Funcionários</a>
             </li>
         </ul>
     </nav>
@@ -46,13 +46,13 @@
                         <input type="text" id="cpf" name="cpf" placeholder="cpf" class="p-2 m-2 field">
                     </article>
                     <article>
-                        <input type="text" id="birthdate" name="birthdate" placeholder="Data de Nascimento" class="p-2 m-2 field">
+                        <input type="text" id="birthDate" name="birthDate" placeholder="Data de Nascimento" class="p-2 m-2 field">
                     </article>
                     <article>
                         <input type="text" id="email" name="email" placeholder="E-mail" class="p-2 m-2 field">
                     </article>
                     <article>
-                        <input type="number" id="registration" name="ragistration" placeholder="Matricula" class="p-2 m-2 field">
+                        <input type="number" id="registration" name="registration" placeholder="Matricula" class="p-2 m-2 field">
                     </article>
                     <article>
                         <input type="password" id="password" name="password" placeholder="Senha" class="p-2 m-2 field">

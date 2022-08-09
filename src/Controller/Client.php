@@ -45,7 +45,7 @@ function insertClient()
     }
 
     $name = $_POST["name"];
-    $cpf = str_repeat(".","-", $_POST['cpf']);
+    $cpf = $_POST['cpf'];
     $birthDate = $_POST["birthDate"];
     $email = $_POST["email"];
     $login = $_POST["login"];

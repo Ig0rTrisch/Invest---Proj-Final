@@ -4,30 +4,44 @@ namespace APP\Model;
 
 class Address
 {
-    private string $publicPlace;
-    private string $streetName;
+    private int $id;
+    private string $public_place;
+    private string $street_name;
     private string $neighborhood;
     private string $complement;
-    private int $numberOfStreet;
-    private int $zipCode;
+    private int $number_of_street;
+    private int $zip_code;
     private string $city;
 
     public function __construct(
-        string $publicPlace,
-        string $streetName,
+        string $public_place,
+        string $street_name,
         string $neighborhood,
         string $complement,
-        int $numberOfStreet,
-        int $zipCode,
-        string $city
+        int $number_of_street,
+        int $zip_code,
+        string $city,
+        int $id=0
     )   
     {
-        $this->publicPlace = $publicPlace;
-        $this->streetName = $streetName;
+        $this->id = $id;
+        $this->public_place = $public_place;
+        $this->street_name = $street_name;
         $this->neighborhood = $neighborhood;
         $this->complement = $complement;
-        $this->numberOfAddress = $numberOfAddress;
-        $this->zipCode = $zipCode;
+        $this->number_of_street = $number_of_street;
+        $this->zip_code = $zip_code;
         $this->city = $city;
+    }
+
+
+    public function __get($attribute)
+    {
+        return $this->$attribute;
+    }
+
+    public function __set($attribute, $value)
+    {
+        $this->$attribute = $value;
     }
 }

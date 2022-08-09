@@ -11,7 +11,7 @@ class Employee
     private string $cpf;
     private string $birthDate;
     private string $email;
-    private int $registration;
+    private int $registration_employee;
     private string $password;
     private Address $address;
 
@@ -20,7 +20,7 @@ class Employee
         string $cpf,
         string $birthDate,
         string $email,
-        int $registration,
+        int $registration_employee,
         string $password,
         int $id=0,
         Address $address=null
@@ -30,9 +30,16 @@ class Employee
         $this->cpf = $cpf;
         $this->birthDate = $birthDate;
         $this->email = $email;
-        $this->registration = $registration;
+        $this->registration_employee = $registration_employee;
         $this->password = $password;
+        $this->id=$id;
         $this->address = $address;
     }
+
+    public function __get($attribute)
+    {
+        return $this->$attribute;
+    }
+
 }
 
