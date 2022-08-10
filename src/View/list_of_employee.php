@@ -7,31 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de Funcionários</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleSheet.css">
 </head>
 
 <body style="height: 650px; display:flex; flex-direction: column; justify-content: space-between;">
     <nav class="bg-blue-400">
         <ul>
             <li class="inline">
-                <a href="dashboard.php">Home/</a>
+                <a href="dashboard.php">Home</a>
             </li>
             <li class="inline">
-                <a href="form_add_client.php">Novo Cliente/</a>
-            </li>
-            <li class="inline">
-                <a href="form_add_sector.php">Novo Setor/</a>
-            </li>
-            <li class="inline">
-                <a href="form_add_account.php">Nova Conta/</a>
-            </li>
-            <li class="inline">
-                <a href="form_add_employee.php">Novo Funcionário/</a>
-            </li>
-            <li class="inline">
-                <a href="../Controller/Client.php?operation=list">Listar Clientes/</a>
+                <a href="form_add_employee.php">Novo Funcionário</a>
             </li>
             <li class="inline">
                 <a href="../Controller/Employee.php?operation=listEmployee">Listar Funcionários</a>
+            </li>
+            <li class="inline">
+                <a href="../Controller/User.php?operation=logout">Sair</a>
             </li>
         </ul>
     </nav>

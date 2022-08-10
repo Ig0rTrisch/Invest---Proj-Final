@@ -11,13 +11,14 @@ class EmployeeDAO implements DAO
     public function insert($object)
     {
         $connection = Connection::getConnection();
-        $stmt = $connection->prepare("INSERT INTO employee VALUES(null,?,?,?,?,?,?,1);");
+        $stmt = $connection->prepare("INSERT INTO employee VALUES(null,?,?,?,?,?,?,?);");
         $stmt->bindParam(1, $object->registration_employee);
         $stmt->bindParam(2, $object->password);
         $stmt->bindParam(3, $object->name);
         $stmt->bindParam(4, $object->cpf);
         $stmt->bindParam(5, $object->birthDate);
         $stmt->bindParam(6, $object->email);
+        $stmt->bindParam(7, $object->address->id);
         return $stmt->execute();
     }
     //Buscar um Funcionário por CPF
@@ -38,14 +39,15 @@ class EmployeeDAO implements DAO
     public function update($object)
     {
         $connection = Connection::getConnection();
-        $stmt = $connection->prepare("UPDATE employee SET registration_employee=?, password=?, name=?, cpf=?, birthDate=?, email=? , idAddress=null WHERE idEmployee=?;");
+        $stmt = $connection->prepare("UPDATE employee SET registration_employee=?, password=?, name=?, cpf=?, birthDate=?, email=? , Address_idAddress=? WHERE idEmployee=?;");
         $stmt->bindParam(1, $object->registration_employee);
-        $stmt->bindParam(2, $object->password_employee);
-        $stmt->bindParam(3, $object->name_employee);
+        $stmt->bindParam(2, $object->password);
+        $stmt->bindParam(3, $object->name);
         $stmt->bindParam(4, $object->cpf);
         $stmt->bindParam(5, $object->birthDate);
         $stmt->bindParam(6, $object->email);
-        $stmt->bindParam(7, $object->id);
+        $stmt->bindParam(7, $object->address->idAddress);
+        $stmt->bindParam(8, $object->id);
         return $stmt->execute();
     }
     //Deletar Funcionário por ID

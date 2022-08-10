@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleSheet.css">
     <title>Cadatrar Funcionário</title>
 </head>
 
@@ -13,31 +14,22 @@
     <nav class="bg-blue-400">
         <ul>
             <li class="inline">
-                <a href="dashboard.php">Home/</a>
+                <a href="dashboard.php">Home</a>
             </li>
             <li class="inline">
-                <a href="form_add_client.php">Novo Cliente/</a>
-            </li>
-            <li class="inline">
-                <a href="form_add_sector.php">Novo Setor/</a>
-            </li>
-            <li class="inline">
-                <a href="form_add_account.php">Nova Conta/</a>
-            </li>
-            <li class="inline">
-                <a href="#">Novo Funcionário/</a>
-            </li>
-            <li class="inline">
-                <a href="../Controller/Client.php?operation=list">Listar Clientes/</a>
+                <a href="#">Novo Funcionário</a>
             </li>
             <li class="inline">
                 <a href="../Controller/Employee.php?operation=listEmployee">Listar Funcionários</a>
+            </li>
+            <li class="inline">
+                <a href="../Controller/User.php?operation=logout">Sair</a>
             </li>
         </ul>
     </nav>
     <main class="flex items-center justify-center h-screen">
         <form action="../Controller/Employee.php?operation=insert" method="POST">
-            <fieldset class="flex flex-col p-4 m-5 border border-purple-400 w-400">
+            <fieldset class="flex flex-col p-4 m-5 w-400">
                 <section>
                     <article>
                         <input type="text" id="name" name="name" placeholder="Nome" class="p-2 m-2 field">

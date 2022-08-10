@@ -11,6 +11,6 @@ class Validation
 
     public static function validatenumber(int $number): bool
     {
-        return mb_strlen($number) < 0;
+        return mb_strlen($number) > 0;
     }
 }

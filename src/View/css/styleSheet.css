@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+}
+body{
+    height: 500px;
+}
+.corpo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.btn{
+    padding: 20px;
+    margin: 0 20px 0 40px; 
+}
+.corpo>form>input{
+    padding: 7px 0;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+.btn>button{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: darkblue;
+    color: white;
+}
+h1, h2{
+    display: block;
+    font-size: xx-large;
+}
+/*Dashboard*/
+li>a{
+    border: solid 1px darkblue;
+    padding: 0 100px;
+}
+nav{
+    margin: 0 auto;
+}
+input::placeholder{
+    color: white;
+}
+input:active{
+    background-color: lightgray;
+    color: white;
+}
+input:defined{
+    border-radius: 10px;
+    background-color: darkgray;
+    color: white;
+}

@@ -6,31 +6,31 @@ class Address
 {
     private int $id;
     private string $public_place;
-    private string $street_name;
+    private string $streetName;
     private string $neighborhood;
     private string $complement;
-    private int $number_of_street;
-    private int $zip_code;
+    private int $numberOfStreet;
+    private int $zipCode;
     private string $city;
 
     public function __construct(
         string $public_place,
-        string $street_name,
+        string $streetName,
         string $neighborhood,
         string $complement,
-        int $number_of_street,
-        int $zip_code,
+        int $numberOfStreet,
+        int $zipCode,
         string $city,
         int $id=0
     )   
     {
         $this->id = $id;
         $this->public_place = $public_place;
-        $this->street_name = $street_name;
+        $this->streetName = $streetName;
         $this->neighborhood = $neighborhood;
         $this->complement = $complement;
-        $this->number_of_street = $number_of_street;
-        $this->zip_code = $zip_code;
+        $this->numberOfStreet = $numberOfStreet;
+        $this->zipCode = $zipCode;
         $this->city = $city;
     }
 

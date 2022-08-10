@@ -63,9 +63,6 @@ function insertEmployee()
     if(Validation::validateString($name)){
         array_unshift($error, "O nome do funcionário deve ter mais de 3 Caractéres");
     }
-    if(Validation::validatenumber($registration_employee)){
-        array_unshift($error, "O número da matrícula deve ser maior que zero!!!!");
-    }
 
     if($error){
         Redirect::redirect(message: $error, type:'warning');
@@ -79,19 +76,19 @@ function insertEmployee()
             password: $password,
             address: new Address(
                 public_place: $employeePublicPlace,
-                street_name: $employeeStreetName,
-                number_of_street: $employeenumberOfStreet,
+                streetName: $employeeStreetName,
+                numberOfStreet: $employeenumberOfStreet,
                 complement: $employeeComplement,
                 neighborhood: $employeeNeighborhood,
                 city: $employeeCity,
-                zip_code: $employeeZipCode
+                zipCode: $employeeZipCode
             )
         );
         try {
             $dao = new AddressDAO();
             $result = $dao->insert($employee->address);
             if($result){
-                $data = $dao->findId();
+                $data = $dao->findLastId();
                 $employee->address->id = $data["id"];
                 $dao = new EmployeeDAO();
                 $result = $dao->insert($employee);
@@ -131,11 +128,11 @@ function removeEmployee()
         Redirect::redirect(message: 'O código do funcionário não foi informado', type: 'error');
     }
 
-    $code = (float) $_GET['code'];
+    $code = (int) $_GET['code'];
     $error = array();
 
     if(!Validation::validatenumber($code)){
-        array_unshift($error, 'Código do funcionário inválido, aqui!!!');
+        array_unshift($error, 'Código do funcionário inválido, aqui');
     }
 
     if($error){
@@ -144,8 +141,10 @@ function removeEmployee()
         try{
             $dao = new EmployeeDAO();
             $result = $dao->delete($code);
+            $dao = new AddressDAO();
+            $result = $dao->delete($code);
             if($result){
-                Redirect::redirect(message: "Funcionário foi removido com sucesso!!!", type: 'error');
+                Redirect::redirect(message: "Funcionário foi removido com sucesso!!!", type: 'success');
                 
             }else{
                 Redirect::redirect(message: ['Não foi possível remover o funcionário'], type: 'warning');
@@ -190,6 +189,7 @@ function editEmployee()
     $email = $_POST["email"];
     $registration_employee = $_POST["registration"];
     $password = $_POST["password"];
+    $idAddress = $_POST["idAddress"];
     $employeePublicPlace = $_POST["publicPlace"];
     $employeeStreetName = $_POST['streetName'];
     $employeenumberOfStreet = $_POST["numberOfStreet"];
@@ -209,25 +209,36 @@ function editEmployee()
         password: $password,
         address: new Address(
             public_place: $employeePublicPlace,
-            street_name: $employeeStreetName,
+            streetName: $employeeStreetName,
             neighborhood: $employeeNeighborhood,
             complement: $employeeComplement,
-            number_of_street: $employeenumberOfStreet,
-            zip_code: $employeeZipCode,
-            city: $employeeCity
+            numberOfStreet: $employeenumberOfStreet,
+            zipCode: $employeeZipCode,
+            city: $employeeCity,
+            id: $code
         ),
         id: $code
     );
     $dao = new EmployeeDAO();
-    try{
+    try {
+        $dao = new AddressDAO();
+        $data = $dao->findId($code);
+        $employee->address->idAddress = $data["id"];
         $result = $dao->update($employee);
-    }catch (PDOException $e){
-        Redirect::redirect("Houve um erro inesperado!!", type: 'error');
-    }
-    if($result){
-        Redirect::redirect(message: 'Funcionário atualizado com sucesso!!!');
-    }else{
-        Redirect::redirect(message: ['Não foi possível atualizar os dados do funcionário!!!']);
+        if($result){
+            $data = $dao->findId($code);
+            $employee->address->idAddress = $data["id"];
+            $dao = new EmployeeDAO();
+            $result = $dao->update($employee);
+            if($result){
+                Redirect::redirect(message: 'Funcionário atualizado com sucesso!!!', type:'success');
+            }else{
+                Redirect::redirect(message: ['Não foi possível atualizar os dados do funcionário!!!'], type: 'error');
+            }
+        }
+    }catch(PDOException $e){
+        var_dump($e);
+        //Redirect::redirect("Houve um erro inesperado!!", type: 'error');
     }
 
 }
